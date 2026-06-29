@@ -23,8 +23,8 @@ export default function MobileProctor() {
 
   // 1. Setup Socket.IO connection
   useEffect(() => {
-    // Connect to backend Socket.IO server running on port 5000 of the same host
-    const socketHost = `http://${window.location.hostname}:5000`;
+    const socketHost = process.env.REACT_APP_BACKEND_URL ||
+      (process.env.NODE_ENV === 'production' ? window.location.origin : 'http://localhost:5000');
     console.log('Connecting to socket server at:', socketHost);
     
     const socketInstance = io(socketHost, {

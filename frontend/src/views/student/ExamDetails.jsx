@@ -96,7 +96,8 @@ const DescriptionAndInstructions = () => {
     setPairingOpen(true);
 
     // Initialize Socket.io connection for pairing
-    const socketHost = `http://${window.location.hostname}:5000`;
+    const socketHost = process.env.REACT_APP_BACKEND_URL ||
+      (process.env.NODE_ENV === 'production' ? window.location.origin : 'http://localhost:5000');
     console.log('Connecting to socket for pairing:', socketHost);
     const socket = io(socketHost, {
       transports: ['websocket', 'polling']

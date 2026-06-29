@@ -20,7 +20,8 @@ export default function Home({ testId, cheatingLog, updateCheatingLog }) {
   useEffect(() => {
     if (!testId) return;
 
-    const socketHost = `http://${window.location.hostname}:5000`;
+    const socketHost = process.env.REACT_APP_BACKEND_URL ||
+      (process.env.NODE_ENV === 'production' ? window.location.origin : 'http://localhost:5000');
     console.log('WebCam component connecting to socket:', socketHost);
     
     const socket = io(socketHost, {
