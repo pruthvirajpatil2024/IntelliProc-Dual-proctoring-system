@@ -3,7 +3,7 @@ services:
     name: intelliproc-dual-proctoring-system
     env: node
     plan: free
-    buildCommand: npm install && cd frontend && npm install --legacy-peer-deps && BUILD_PATH=dist npm run build
+    buildCommand: npm install && cd frontend && npm install --legacy-peer-deps --include=dev && BUILD_PATH=dist npm run build
     startCommand: node backend/server.js
     healthCheckPath: /
     envVars:
