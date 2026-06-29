@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: ai-proctored-system
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGO_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
