@@ -1,15 +1,14 @@
 services:
   - type: web
-    name: ai-proctored-system
-    env: docker
-    dockerfilePath: ./Dockerfile
+    name: intelliproc-dual-proctoring-system
+    env: node
     plan: free
+    buildCommand: npm install && cd frontend && npm install --legacy-peer-deps && BUILD_PATH=dist npm run build
+    startCommand: node backend/server.js
     healthCheckPath: /
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5000
       - key: MONGO_URL
         sync: false
       - key: JWT_SECRET
